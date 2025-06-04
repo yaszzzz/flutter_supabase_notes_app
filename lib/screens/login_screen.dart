@@ -2,39 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:get/get.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
   String? _errorMessage;
 
-  Future<void> _signUp() async {
+  Future<void> _signIn() async {
     setState(() {
       _isLoading = true;
       _errorMessage = null;
     });
 
     try {
-      final AuthResponse response = await Supabase.instance.client.auth.signUp(
-        email: _emailController.text,
-        password: _passwordController.text,
-      );
+      final AuthResponse response = await Supabase.instance.client.auth
+          .signInWithPassword(
+            email: _emailController.text,
+            password: _passwordController.text,
+          );
 
       if (response.user != null) {
-        // Registrasi berhasil, arahkan ke halaman home
+        // Login berhasil, arahkan ke halaman home
         Get.offAllNamed('/home');
       } else {
         // Supabase biasanya melempar exception jika ada error,
         // tapi jika tidak, tangani di sini.
         setState(() {
-          _errorMessage = 'Registrasi gagal. Silakan coba lagi.';
+          _errorMessage = 'Login gagal. Silakan coba lagi.';
         });
       }
     } on AuthException catch (e) {
@@ -55,7 +56,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Registrasi')),
+      appBar: AppBar(title: const Text('Login')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -82,8 +83,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             _isLoading
                 ? const CircularProgressIndicator()
                 : ElevatedButton(
-                    onPressed: _signUp,
-                    child: const Text('Daftar'),
+                    onPressed: _signIn,
+                    child: const Text('Login'),
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(50), // Lebar penuh
                     ),
@@ -100,9 +101,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
             const SizedBox(height: 16),
             TextButton(
               onPressed: () {
-                Get.offAllNamed('/login'); // Navigasi ke halaman login
+                Get.offAllNamed('/register'); // Navigasi ke halaman registrasi
               },
-              child: const Text('Sudah punya akun? Login di sini'),
+              child: const Text('Belum punya akun? Daftar di sini'),
             ),
           ],
         ),

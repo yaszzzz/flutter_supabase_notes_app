@@ -12,8 +12,10 @@ void main() async {
 
   // Inisialisasi Supabase
   await Supabase.initialize(
-    url: 'YOUR_SUPABASE_URL', // Ganti dengan Project URL Anda
-    anonKey: 'YOUR_SUPABASE_ANON_KEY', // Ganti dengan Anon Key Anda
+    url:
+        'https://xklpcqxcvdbwixpwcjmg.supabase.co', // Ganti dengan Project URL Anda
+    anonKey:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhrbHBjcXhjdmRid2l4cHdjam1nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkwMTI2NzIsImV4cCI6MjA2NDU4ODY3Mn0.Qhn3FJI81Oi8V4dWHeK8ZHwR5ApDDb9ODezXrF5Hbbo', // Ganti dengan Anon Key Anda
   );
 
   runApp(const MyApp());
