@@ -67,14 +67,14 @@ class _NoteFormScreenState extends State<NoteFormScreen> {
             final imageBytes = await _imageFile!.readAsBytes();
             imageUrl = await _supabaseService.uploadImageBytes(
               imageBytes,
-              'notes_images',
+              'notes-images',
               fileName,
             );
           } else {
             final file = File(_imageFile!.path);
             imageUrl = await _supabaseService.uploadImage(
               file,
-              'notes_images',
+              'notes-images',
               fileName,
             );
           }
