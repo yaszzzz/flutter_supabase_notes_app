@@ -7,6 +7,7 @@ import '../../screens/home/note_form_screen.dart';
 import '../../screens/home/notes_list_screen.dart';
 import '../../screens/profile/profile_screen.dart';
 import '../../screens/splash_screen.dart';
+import '../screens/chat_screen.dart';
 
 class AppRoutes {
   static const String splash = '/';
@@ -15,6 +16,7 @@ class AppRoutes {
   static const String profile = '/profile';
   static const String notes = '/notes';
   static const String noteForm = '/note-form';
+  static const String chat = '/chat';
 
   static final routes = [
     GetPage(name: splash, page: () => const SplashScreen()),
@@ -23,5 +25,6 @@ class AppRoutes {
     GetPage(name: profile, page: () => const ProfileScreen()),
     GetPage(name: notes, page: () => const NotesListScreen()),
     GetPage(name: noteForm, page: () => NoteFormScreen()),
+    GetPage(name: chat, page: () => const ChatScreen()),
   ];
 }

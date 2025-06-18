@@ -175,69 +175,84 @@ class _ProfileScreenState extends State<ProfileScreen> {
           IconButton(onPressed: _signOut, icon: const Icon(Icons.logout)),
         ],
       ),
-      body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : _profile == null
-          ? const Center(child: Text('Gagal memuat profil.'))
-          : SingleChildScrollView(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  GestureDetector(
-                    onTap: _uploadAvatar,
-                    child: CircleAvatar(
-                      radius: 60,
-                      backgroundImage: (_profile?.avatarUrl != null)
-                          ? NetworkImage(_profile!.avatarUrl!)
-                          : null,
-                      child: (_profile?.avatarUrl == null)
-                          ? const Icon(Icons.person, size: 60)
-                          : null,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  TextButton.icon(
-                    onPressed: _uploadAvatar,
-                    icon: const Icon(Icons.camera_alt),
-                    label: const Text('Ganti Avatar'),
-                  ),
-                  const SizedBox(height: 20),
-                  TextField(
-                    controller: _usernameController,
-                    decoration: const InputDecoration(
-                      labelText: 'Username',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton.icon(
-                      onPressed: _updateProfile,
-                      icon: const Icon(Icons.save),
-                      label: const Text('Simpan Perubahan'),
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
+      body:
+          _isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : _profile == null
+              ? const Center(child: Text('Gagal memuat profil.'))
+              : SingleChildScrollView(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    GestureDetector(
+                      onTap: _uploadAvatar,
+                      child: CircleAvatar(
+                        radius: 60,
+                        backgroundImage:
+                            (_profile?.avatarUrl != null)
+                                ? NetworkImage(_profile!.avatarUrl!)
+                                : null,
+                        child:
+                            (_profile?.avatarUrl == null)
+                                ? const Icon(Icons.person, size: 60)
+                                : null,
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  const Divider(),
-                  const SizedBox(height: 20),
-                  SizedBox(
-                    width: double.infinity,
-                    child: OutlinedButton.icon(
-                      onPressed: () => Get.toNamed(AppRoutes.notes),
-                      icon: const Icon(Icons.note),
-                      label: const Text('Lihat Catatan Saya'),
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
+                    const SizedBox(height: 8),
+                    TextButton.icon(
+                      onPressed: _uploadAvatar,
+                      icon: const Icon(Icons.camera_alt),
+                      label: const Text('Ganti Avatar'),
+                    ),
+                    const SizedBox(height: 20),
+                    TextField(
+                      controller: _usernameController,
+                      decoration: const InputDecoration(
+                        labelText: 'Username',
+                        border: OutlineInputBorder(),
                       ),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 20),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton.icon(
+                        onPressed: _updateProfile,
+                        icon: const Icon(Icons.save),
+                        label: const Text('Simpan Perubahan'),
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    const Divider(),
+                    const SizedBox(height: 20),
+                    SizedBox(
+                      width: double.infinity,
+                      child: OutlinedButton.icon(
+                        onPressed: () => Get.toNamed(AppRoutes.notes),
+                        icon: const Icon(Icons.note),
+                        label: const Text('Lihat Catatan Saya'),
+                        style: OutlinedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    SizedBox(
+                      width: double.infinity,
+                      child: OutlinedButton.icon(
+                        onPressed: () => Get.toNamed(AppRoutes.chat),
+                        icon: const Icon(Icons.chat_bubble),
+                        label: const Text('Chat Dengan AI'),
+                        style: OutlinedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
     );
   }
 }
