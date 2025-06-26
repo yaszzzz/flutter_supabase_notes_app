@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../main.dart';
+import '../../utils/app_routes.dart';
 import '../../widgets/custom_input_field.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -40,13 +41,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
         }
 
         if (mounted) {
-          Get.snackbar(
-            'Sukses',
-            'Pendaftaran berhasil! Silakan cek email Anda untuk konfirmasi.',
-            backgroundColor: Colors.green,
-            colorText: Colors.white,
-          );
-          Get.back(); // Kembali ke halaman login
+          if (res.session != null) {
+            Get.snackbar(
+              'Sukses',
+              'Pendaftaran berhasil! Anda telah masuk.',
+              backgroundColor: Colors.green,
+              colorText: Colors.white,
+            );
+            Get.offAllNamed(AppRoutes.notes); // Langsung ke halaman catatan
+          } else {
+            Get.snackbar(
+              'Sukses',
+              'Pendaftaran berhasil! Silakan cek email Anda untuk konfirmasi.',
+              backgroundColor: Colors.green,
+              colorText: Colors.white,
+            );
+            Get.back(); // Kembali ke halaman login
+          }
         }
       } on AuthException catch (e) {
         Get.snackbar(
